@@ -43,4 +43,8 @@ public class CarRepository {
                 (year == null || car.getYear() == year) &&
                 (price == null || car.getPrice() == price);
     }
+
+    public List<Car> getAllCars(){
+        return cars.keySet().stream().toList();
+    }
 }
