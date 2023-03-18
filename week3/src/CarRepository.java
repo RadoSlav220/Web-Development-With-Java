@@ -36,7 +36,7 @@ public class CarRepository {
                 .filter((car)->meetsRequirements(car, make, model, year, price))
                 .toList();
     }
-    
+
     private boolean meetsRequirements(Car car, String make, String model, Integer year, Double price){
         return (make == null || car.getMake().equals(make)) &&
                 (model == null || car.getModel().equals(model)) &&
