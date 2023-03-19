@@ -14,8 +14,8 @@ public class CarService {
         carRepo.addCar(car);
     }
 
-    public void removeCar(Car car){
-        carRepo.removeCar(car);
+    public boolean removeCar(Car car){
+        return carRepo.removeCar(car);
     }
 
     public List<Car> searchCars(String make, String model, Integer year, Double price){
@@ -26,8 +26,9 @@ public class CarService {
         return carRepo.getAllCars();
     }
 
+    //Returns null if the sale is not possible (The car is unavailable)
     public Invoice sellCar(Car car, String customerName){
-        return new Invoice(customerName, new Date(), car, taxRate);
+        return removeCar(car) ? new Invoice(customerName, new Date(), car, taxRate) : null;
     }
 
     public void printInvoice(Invoice invoice){

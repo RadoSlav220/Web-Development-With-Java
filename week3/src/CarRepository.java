@@ -19,7 +19,7 @@ public class CarRepository {
         }
     }
 
-    public void removeCar(Car car){
+    public boolean removeCar(Car car){
         Integer count = cars.get(car);
         if (count != null){
             if (count == 1){
@@ -28,6 +28,10 @@ public class CarRepository {
             else {
                 cars.put(car, count - 1);
             }
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
