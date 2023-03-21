@@ -26,7 +26,12 @@ public class CarService {
         return carRepo.getAllCars();
     }
 
-    //Returns null if the sale is not possible (The car is unavailable)
+    /**
+     *
+     * @param car The car
+     * @param customerName The customer's name
+     * @return A valid invoice or null if the sale is not possible (The car is unavailable)
+     */
     public Invoice sellCar(Car car, String customerName){
         return removeCar(car) ? new Invoice(customerName, new Date(), car, taxRate) : null;
     }
