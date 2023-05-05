@@ -20,7 +20,7 @@ public class Task0Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Book book = new Book("Narnia", "John",
 								new BigDecimal(12.09), "Pulblisher",
-								LocalDate.of(2001, 12, 1));
-		
+								LocalDate.of(2001, 12, 1), "BG123");
+		System.out.println(book.getIsbn());
 	}
 }

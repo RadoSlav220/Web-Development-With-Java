@@ -15,4 +15,5 @@ public class Book {
     private BigDecimal price;
     private String publisher;
     private LocalDate publishedYear;
+    private String isbn;
 }
