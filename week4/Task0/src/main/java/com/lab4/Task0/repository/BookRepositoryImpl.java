@@ -1,57 +1,38 @@
 package com.lab4.Task0.repository;
 
 import com.lab4.Task0.model.Book;
+import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class BookRepositoryImpl implements BookRepository{
     private Map <String, Book> db = new HashMap<>();
 
     @Override
-    public boolean add(Book o) {
-        return false;
+    public void add(Book book) {
+        db.put(book.getIsbn(), book);
     }
 
     @Override
-    public void remove(Book o) {
-
+    public void remove(Book book) {
+        db.remove(book.getIsbn());
     }
 
     @Override
     public void clear() {
-
+        db.clear();
     }
 
     @Override
     public Book getByIsbn(String isbn) {
-        return null;
+        return db.get(isbn);
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return null;
-    }
-
-    @Override
-    public List<Book> getAllBooksByAuthor(String author) {
-        return null;
-    }
-
-    @Override
-    public List<Book> getAllBooksByPublisher(String author) {
-        return null;
-    }
-
-    @Override
-    public List<Book> getAllBooksPublishedAfter(LocalDate from) {
-        return null;
-    }
-
-    @Override
-    public List<Book> getAllBooksBetween(LocalDate from, LocalDate to) {
-        return null;
+        return db.values().stream().toList();
     }
 }

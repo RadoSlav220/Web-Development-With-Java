@@ -1,13 +1,11 @@
 package com.lab4.Task0.service;
 import com.lab4.Task0.model.Book;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-@Service
 public interface BookService {
 
     /**
