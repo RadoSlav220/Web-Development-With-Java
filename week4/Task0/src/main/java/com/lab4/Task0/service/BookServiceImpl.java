@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Service
@@ -61,12 +60,36 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public Map<String, List<Book>> getAllBooksGroupByAuthor() {
-        return null;
+        Set<String> authors = new HashSet<>();
+        List<Book> allBooks = bookRepository.getAllBooks();
+        for (Book book : allBooks){
+            authors.add(book.getAuthor());
+        }
+
+        Map<String, List<Book>> booksGroupByAuthor = new HashMap<>();
+        for (String author : authors){
+            booksGroupByAuthor.put(author, allBooks.stream()
+                                                    .filter(book -> book.getAuthor().equals(author))
+                                                    .toList());
+        }
+        return booksGroupByAuthor;
     }
 
     @Override
     public Map<String, List<Book>> getAllBooksGroupByPublisher() {
-        return null;
+        Set<String> publishers = new HashSet<>();
+        List<Book> allBooks = bookRepository.getAllBooks();
+        for (Book book : allBooks){
+            publishers.add(book.getPublisher());
+        }
+
+        Map<String, List<Book>> booksGroupByPublisher = new HashMap<>();
+        for (String publisher : publishers){
+            booksGroupByPublisher.put(publisher, allBooks.stream()
+                    .filter(book -> book.getPublisher().equals(publisher))
+                    .toList());
+        }
+        return booksGroupByPublisher;
     }
 
     @Override

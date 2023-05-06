@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 public class Task0Application implements CommandLineRunner {
@@ -37,9 +38,18 @@ public class Task0Application implements CommandLineRunner {
 		bookService.add(book2);
 		bookService.add(book3);
 
-		List<Book> list = bookService.getAllBooksByAuthor("John");
-		for (Book book : list){
-			System.out.println(book.getTitle() + " " + book.getIsbn());
+		Map<String, List<Book>> booksByAuthor = bookService.getAllBooksGroupByAuthor();
+		booksByAuthor.forEach((k ,v) -> System.out.println(k + ": " + printBookList(v)));
+
+		Map<String, List<Book>> booksByPublisher = bookService.getAllBooksGroupByPublisher();
+		booksByPublisher.forEach((k ,v) -> System.out.println(k + ": " + printBookList(v)));
+	}
+
+	private String printBookList(List<Book> books){
+		StringBuilder result = new StringBuilder();
+		for (Book b : books){
+			result.append(b.getIsbn() + " ");
 		}
+		return result.toString();
 	}
 }
